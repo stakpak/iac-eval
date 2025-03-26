@@ -331,6 +331,46 @@ def gemini(preprompt, prompt):
     except:
         return ""
 
+
+def Stakpak(preprompt, prompt):
+    for i in range(2):
+        try:
+            url = "https://apiv2.stakpak.dev/v1/commands/Terraform/generate"
+            headers = {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + os.environ["STAKPAK_API_KEY"],
+            }
+            data = {
+                "flow_ref": None,
+                "prompt": prompt,
+                "resolve_validation_errors": True,
+                "stream": False,
+            }
+
+            response = requests.post(url, headers=headers, json=data)
+            if response.status_code == 200:
+                json_data = response.json()
+                result_string = "```hcl\n"
+
+                # Extract code from created blocks
+                if "created_blocks" in json_data["result"]:
+                    for block in json_data["result"]["created_blocks"]:
+                        if block.get("code"):
+                            result_string += block["code"] + "\n"
+                result_string += "```"
+
+                return result_string.strip()
+            else:
+                print(
+                    f"Error: API request failed with status code {response.status_code}"
+                )
+                print(f"Response error: {response.text}")
+                print("Retrying...")
+        except Exception as e:
+            print(f"Error making API request: {str(e)}")
+            print("Retrying...")
+    return ""
+
 # gemini("You are TerraformAI, an AI agent that builds and deploys Cloud Infrastructure written in Terraform HCL. Generate a description of the Terraform program you will define, followed by a single Terraform HCL program in response to each of my Instructions. Make sure the configuration is deployable. Create IAM roles as needed.", "create a AWS codebuild project resource with example iam role, example GITHUB source, and a logs config")
 
 # print(Magicoder_S_CL_7B("You are TerraformAI, an AI agent that builds and deploys Cloud Infrastructure written in Terraform HCL. Generate a description of the Terraform program you will define, followed by a single Terraform HCL program in response to each of my Instructions. Make sure the configuration is deployable. Create IAM roles as needed. If variables are used, make sure default values are supplied.", "Here is the actual prompt: Create an AWS VPC resource with an Internet Gateway attached to it"))
