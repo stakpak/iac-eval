@@ -551,6 +551,23 @@ def main(samples: int):
     excluded_dirs = ["llm-judge-evaluation-metric", "pass", # skip filenames containing "pass". will merge them into a regular file once done with eval..
     "multi-turn", "RAG", "COT", "FSP"] # also skip these for now since we don't have the data: just add these back in once the data is ready and we're good to go
     composition_dict = {
+        "stakpak": {
+            "COT": {
+                "complete": [],
+            },
+            "FSP": {
+                "complete": [],
+            },
+            "multi-turn": {
+                "complete": [],
+            },
+            "RAG": {
+                "complete": [],
+            },
+            "Standard": {
+                "complete": [],
+            },
+        },
         "gpt4": {
             "COT": {
                 "complete": [],
