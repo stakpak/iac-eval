@@ -439,6 +439,23 @@ def main():
     # print()
     excluded_dirs = ["pass"] # skip filenames containing "pass". will merge them into a regular file once done with eval..
     composition_dict = {
+        "stakpak": {
+            "COT": {
+                "complete": [],
+            },
+            "FSP": {
+                "complete": [],
+            },
+            "multi-turn": {
+                "complete": [],
+            },
+            "RAG": {
+                "complete": [],
+            },
+            "Standard": {
+                "complete": [],
+            },
+        },
         "gpt4": {
             "COT": {
                 "complete": [],
