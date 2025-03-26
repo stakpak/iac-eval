@@ -41,6 +41,7 @@ EVAL_MODELS = [
     "Magicoder_S_CL_7B",
     "Wizardcoder33b",
     "Wizardcoder34b",
+    "stakpak",
 ]  # default to all available models
 
 PROMPT_ENHANCEMENT_STRATS = ["RAG", "COT", "FSP", "multi-turn", ""]
@@ -696,7 +697,7 @@ def run_terraform_plan(terraform_directory, plan_file, prompt):
                 ["terraform", "plan", "-out", plan_file, "-no-color"],
                 capture_output=True,
                 text=True,
-                timeout=100,  # 5 minutes timeout (assume failed if timeout)
+                timeout=300,  # 5 minutes timeout (assume failed if timeout)
             )
             if "Inconsistent dependency lock file" in result.stderr:
                 subprocess.run(["terraform", "init"], capture_output=True, text=True)
