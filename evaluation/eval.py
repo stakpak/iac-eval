@@ -419,6 +419,8 @@ def read_models(
     df = pd.read_csv(eval_filepath, header=0)
 
     for index, row in df.iterrows():
+        logger.info(f"Processing row {index + 1} of {len(df)}")
+
         # iterate every row
         # find specific column
         model_evaluation(
@@ -433,6 +435,11 @@ def read_models(
             uuid_1,
         )
 
+        # Save progress after each row
+        df.to_csv(eval_filepath, index=False, encoding="utf-8")
+        df.to_csv(final_filepath, index=False, encoding="utf-8")
+
+    # Final save
     df.to_csv(eval_filepath, index=False, encoding="utf-8")
     df.to_csv(final_filepath, index=False, encoding="utf-8")
 
