@@ -313,6 +313,7 @@ def metric_calculation_loop(composition_dict, dataset_dir, output_composition_di
                                 except Exception as e:
                                     s = str(e)
                                     print(s)
+                                    print(row["LLM Output #0"])
                                     if "'float' object has no attribute 'split'" in s:
                                         candidate = ""
                                 # print(complexity)
