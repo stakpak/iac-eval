@@ -309,8 +309,7 @@ def metric_calculation_loop(composition_dict, dataset_dir, output_composition_di
                                 #         x=1
                                 reference = row["Reference output"]
                                 try:
-                                    #answer, candidate = eval.separate_answer_and_code(row["LLM Output #0"], DELIMITERS)
-                                    candidate = row["LLM Output #0"]
+                                    answer, candidate = eval.separate_answer_and_code(row["LLM Output #0"], DELIMITERS)
                                 except Exception as e:
                                     s = str(e)
                                     print(s)
