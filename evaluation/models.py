@@ -342,7 +342,7 @@ def Stakpak(preprompt, prompt):
             }
             data = {
                 "flow_ref": None,
-                "prompt": prompt,
+                "prompt": f"Guidelines: {preprompt} \n User Request: {prompt}",
                 "resolve_validation_errors": True,
                 "stream": False,
             }
