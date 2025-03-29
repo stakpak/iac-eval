@@ -704,7 +704,7 @@ def run_terraform_plan(terraform_directory, plan_file, prompt):
                 ["terraform", "plan", "-out", plan_file, "-no-color"],
                 capture_output=True,
                 text=True,
-                timeout=300,  # 5 minutes timeout (assume failed if timeout)
+                timeout=100,  # 5 minutes timeout (assume failed if timeout)
             )
             if "Inconsistent dependency lock file" in result.stderr:
                 subprocess.run(["terraform", "init"], capture_output=True, text=True)
